@@ -1,0 +1,97 @@
+/dts-v1/;
+/plugin/;
+/ {
+    compatible = "brcm,bcm2835", "brcm,bcm2708", "brcm,bcm2709";
+    #address-cells = <1>;
+    #size-cells = <0>;
+
+    fragment@0 {
+        reg = <0>;
+        target = <&gpio>;
+        __overlay__ {
+            pins {
+                brcm,pins = <4 19 16 26 14 15 20 18 17 31 13 29 12>;
+                brcm,function = <0>;
+                brcm,pull = <2>;
+            };
+        };
+    };
+
+    fragment@1 {
+        reg = <1>;
+        target-path = "/soc";
+        __overlay__ {
+            buttons {
+                compatible = "gpio-keys";
+                #address-cells = <1>;
+                #size-cells = <0>;
+
+                button@26 { // Player 1 Down
+                    reg = <26>;
+                    gpios = <&gpio 26 1>;
+                    linux,code = <108>;
+                };
+                button@16 { // Player 1 Up
+                    reg = <16>;
+                    gpios = <&gpio 16 1>;
+                    linux,code = <103>;
+                };
+                button@19 { // Player 1 Right
+                    reg = <19>;
+                    gpios = <&gpio 19 1>;
+                    linux,code = <106>;
+                };
+                button@4 { // Player 1 Left
+                    reg = <4>;
+                    gpios = <&gpio 4 1>;
+                    linux,code = <105>;
+                };
+                button@31 { // Player 1 Start
+                    reg = <31>;
+                    gpios = <&gpio 31 1>;
+                    linux,code = <28>;
+                };
+                button@29 { // Player 1 Select
+                    reg = <29>;
+                    gpios = <&gpio 29 1>;
+                    linux,code = <54>;
+                };
+                button@17 { // Player 1 A
+                    reg = <17>;
+                    gpios = <&gpio 17 1>;
+                    linux,code = <45>;
+                };
+                button@14 { // Player 1 B
+                    reg = <14>;
+                    gpios = <&gpio 14 1>;
+                    linux,code = <44>;
+                };
+                button@20 { // Player 1 X
+                    reg = <20>;
+                    gpios = <&gpio 20 1>;
+                    linux,code = <31>;
+                };
+                button@18 { // Player 1 Y
+                    reg = <18>;
+                    gpios = <&gpio 18 1>;
+                    linux,code = <30>;
+                };
+                button@12 { // Player 1 L
+                    reg = <12>;
+                    gpios = <&gpio 12 1>;
+                    linux,code = <16>;
+                };
+                button@13 { // Player 1 R
+                    reg = <13>;
+                    gpios = <&gpio 13 1>;
+                    linux,code = <17>;
+                };
+                button@17 { // Player 1 Hotkey
+                    reg = <17>;
+                    gpios = <&gpio 17 1>;
+                    linux,code = <60>; // Exemple de code pour le Hotkey
+                };
+            };
+        };
+    };
+};
